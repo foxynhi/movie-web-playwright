@@ -21,8 +21,11 @@ jobs:
         env:
           BASE_URL: ${{ SECRETS.BASE_URL }} 
           USERNAME: ${{ SECRETS.TEST_EMAIL }}
-          PASSWORD: ${{ SECRETS.TEST_PASSWORD }}      
-        run: npx playwright test        
+          PASSWORD: ${{ SECRETS.TEST_PASSWORD }}
+        run: echo "BASE_URL is $BASE_URL"
+          echo "USERNAME is $USERNAME"
+          echo "PASSWORD is $PASSWORD"
+          npx playwright test        
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
