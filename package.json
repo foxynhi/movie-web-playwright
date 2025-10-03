@@ -2,13 +2,40 @@
   "name": "clone-mcp-playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test --grep @regression",
+    "test:critical": "npx playwright test --grep @critical",
+    "report": "playwright show-report TestResults/playwright-report",
+    "clean": "del-cli \"TestResults/*.html\" \"TestResults/playwright-report\" \"TestResults/screenshots\" \"test-results\"",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "lint-check": "eslint .",
+    "format-check": "prettier --check .",
+    "validate": "npm run format && npm run lint"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "pom",
+    "automation"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.55.1",
-    "@types/node": "^24.6.2"
+    "@types/node": "^24.6.2",
+    "del-cli": "^7.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }

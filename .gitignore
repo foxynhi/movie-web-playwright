@@ -1,8 +1,19 @@
 # Playwright
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+package-lock.json
+
+testResults/
+test-results/
+playwright-report/
+blob-report/
+
+playwright/.cache/
+playwright/.auth/
+
+.env
 .vscode/
+
+*.log
+npm-debug.log*
+
+!TestResults/testHistory.json
