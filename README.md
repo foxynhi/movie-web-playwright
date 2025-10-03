@@ -48,16 +48,19 @@ playwright-movies-test/
 1. **Clone or create the project structure**
 
 2. **Install dependencies:**
+
 ```bash
 npm install
 ```
 
 3. **Install Playwright browsers:**
+
 ```bash
 npx playwright install
 ```
 
 4. **Create `.env` file** in the root directory:
+
 ```env
 # Login Credentials
 TEST_EMAIL=me@outlook.com
@@ -68,6 +71,7 @@ BASE_URL=https://debs-obrien.github.io/playwright-movies-app
 ```
 
 5. **Create initial test history file:**
+
 ```bash
 mkdir -p TestResults
 echo "[]" > TestResults/testHistory.json
@@ -76,26 +80,31 @@ echo "[]" > TestResults/testHistory.json
 ## 🏃 Running Tests
 
 ### Run all tests
+
 ```bash
 npm test
 ```
 
 ### Run tests in headed mode (visible browser)
+
 ```bash
 npm run test:headed
 ```
 
 ### Run tests in UI mode (interactive)
+
 ```bash
 npm run test:ui
 ```
 
 ### Run tests in debug mode
+
 ```bash
 npm run test:debug
 ```
 
 ### Run tests in specific browser
+
 ```bash
 npm run test:chromium
 npm run test:firefox
@@ -103,11 +112,13 @@ npm run test:webkit
 ```
 
 ### View Playwright HTML report
+
 ```bash
 npm run report
 ```
 
 ### Clean test results
+
 ```bash
 npm run clean
 ```
@@ -115,11 +126,14 @@ npm run clean
 ## 📊 Reports
 
 ### Custom HTML Reports
+
 After each test run, a custom HTML report is generated in `TestResults/` with the format:
+
 - `login_to_movies_app_with_valid_credentials-20250103-1.html`
 - `login_to_movies_app_with_valid_credentials-20250103-2.html` (if run again same day)
 
 These reports include:
+
 - ✅ Test status (passed/failed)
 - ⏱️ Duration and timestamps
 - 📝 Step-by-step execution details
@@ -127,7 +141,9 @@ These reports include:
 - 🌐 Browser information
 
 ### Test History
+
 `TestResults/testHistory.json` maintains a running history of all test executions:
+
 ```json
 [
   {
@@ -149,7 +165,9 @@ These reports include:
 ## 📝 Page Object Model Structure
 
 ### BasePage.js
+
 Common methods available to all page objects:
+
 - `navigate(url)` - Navigate to URL
 - `click(locator)` - Click element
 - `fill(locator, text)` - Fill input field
@@ -160,7 +178,9 @@ Common methods available to all page objects:
 - `getCurrentUrl()` - Get current URL
 
 ### HomePage.js
+
 Methods specific to the home page:
+
 - `goto(baseUrl)` - Navigate to home
 - `isUserLoggedIn()` - Check login status
 - `clickLogin()` - Open login page
@@ -169,7 +189,9 @@ Methods specific to the home page:
 - `getCategoryHeading()` - Get current category
 
 ### LoginPage.js
+
 Methods for the login page:
+
 - `login(email, password)` - Complete login flow
 - `waitForLoginForm()` - Wait for form to load
 - `fillEmail(email)` - Fill email field
@@ -180,22 +202,23 @@ Methods for the login page:
 ## 🧪 Writing New Tests
 
 Example test structure:
+
 ```javascript
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/HomePage.js';
-import dotenv from 'dotenv';
+import { test, expect } from "@playwright/test";
+import { HomePage } from "../pages/HomePage.js";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-test('my new test', async ({ page }) => {
+test("my new test", async ({ page }) => {
   const homePage = new HomePage(page);
-  
-  await test.step('Step 1 description', async () => {
+
+  await test.step("Step 1 description", async () => {
     // Your test actions
     await homePage.goto(process.env.BASE_URL);
   });
-  
-  await test.step('Step 2 description', async () => {
+
+  await test.step("Step 2 description", async () => {
     // More actions
   });
 });
@@ -212,9 +235,11 @@ test('my new test', async ({ page }) => {
 ## 📦 Dependencies
 
 ### Production Dependencies
+
 - `dotenv` - Environment variable management
 
 ### Dev Dependencies
+
 - `@playwright/test` - Playwright testing framework
 - `@types/node` - TypeScript definitions for Node.js
 
@@ -233,16 +258,19 @@ MIT
 ## 🐛 Troubleshooting
 
 ### Tests failing with "browser not found"
+
 ```bash
 npx playwright install
 ```
 
 ### Environment variables not loading
+
 - Ensure `.env` file exists in root directory
 - Check that `dotenv.config()` is called in test files
 - Verify variable names match in `.env` and test files
 
 ### Reports not generating
+
 - Check that `TestResults/` directory exists
 - Verify write permissions on the directory
 - Check console for any error messages
