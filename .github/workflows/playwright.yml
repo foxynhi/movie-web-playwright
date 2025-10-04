@@ -13,8 +13,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Get Playwright version
+        id: pw
+        run: |
+          echo "PLAYWRIGHT_VERSION=$(node -p "require('./package.json').devDependencies?.['@playwright/test'] || require('./package.json').dependencies?.['@playwright/test']")" >> $GITHUB_ENV
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests  
@@ -22,11 +32,7 @@ jobs:
           BASE_URL: https://debs-obrien.github.io/playwright-movies-app
           USERNAME: joedoe@outlook.com
           PASSWORD: 12345
-
-        run: |
-          echo "BASE_URL is $BASE_URL"
-          echo "USERNAME is $USERNAME"
-          echo "PASSWORD is $PASSWORD"
+        run: 
           npx playwright test        
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}

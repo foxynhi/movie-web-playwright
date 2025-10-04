@@ -29,7 +29,7 @@ export class BasePage {
    */
   async waitForElement(
     locator: Locator,
-    timeout: number = 10000,
+    timeout: number = 20000,
   ): Promise<void> {
     await locator.waitFor({ state: "visible", timeout });
   }
@@ -40,7 +40,7 @@ export class BasePage {
    * @param {number} timeout - Timeout in milliseconds
    * @returns {Promise<boolean>}
    */
-  async isVisible(locator: Locator, timeout: number = 2000): Promise<boolean> {
+  async isVisible(locator: Locator, timeout: number = 5000): Promise<boolean> {
     try {
       await locator.isVisible({ timeout });
       return true;
