@@ -25,7 +25,7 @@ export const test = base.extend<TestFixtures>({
   homePage: async ({ page }, use) => {
     const homePage = new HomePage(page);
     console.log(
-      "Hello: ",
+      "Worker - Parallel index: ",
       process.env.TEST_WORKER_INDEX,
       process.env.TEST_PARALLEL_INDEX,
     );

@@ -27,7 +27,7 @@ export default defineConfig({
     [
       "html",
       {
-        outputFolder: "./TestResults/playwright-report",
+        outputFolder: process.env.CI ? "./playwright-report" : "./TestResults/playwright-report",
         open: process.env.CI ? "never" : "always",
       },
     ],
