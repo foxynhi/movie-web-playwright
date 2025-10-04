@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
+    branches: [main, dev]
   pull_request:
-    branches: [main, master]
+    branches: [main, dev]
 jobs:
   test:
     timeout-minutes: 60
@@ -19,10 +19,12 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests  
         env:
-          BASE_URL: ${{ SECRETS.BASE_URL }} 
-          USERNAME: ${{ SECRETS.TEST_EMAIL }}
-          PASSWORD: ${{ SECRETS.TEST_PASSWORD }}
-        run: echo "BASE_URL is $BASE_URL"
+          BASE_URL: https://debs-obrien.github.io/playwright-movies-app
+          USERNAME: joedoe@outlook.com
+          PASSWORD: 12345
+
+        run: |
+          echo "BASE_URL is $BASE_URL"
           echo "USERNAME is $USERNAME"
           echo "PASSWORD is $PASSWORD"
           npx playwright test        
