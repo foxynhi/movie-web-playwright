@@ -2,12 +2,10 @@ import { test as base, TestInfo } from "@playwright/test";
 import { HomePage } from "../pages/homePage";
 import { LoginPage } from "../pages/loginPage";
 import { ReportGenerator } from "../utils/reportGenerator";
-import dotenv from "dotenv";
 import { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
 import { BasePage } from "../pages/basePage";
+import { performLogin } from "./shared/auth";
 export { expect } from "@playwright/test";
-
-dotenv.config();
 
 type TestFixtures = {
   homePage: HomePage;
@@ -86,23 +84,11 @@ export const test = base.extend<TestFixtures>({
    * Use this for tests that require authenticated state
    */
   authenticatedPage: async (
-    { page, homePage, loginPage, testCredentials },
+    { page, testCredentials },
     use,
   ) => {
     // Navigate to home page
-    await homePage.goto(testCredentials.baseUrl);
-
-    // Check if already logged in
-    const isLoggedIn = await homePage.isUserLoggedIn();
-
-    if (!isLoggedIn) {
-      // Perform login
-      await homePage.clickLogin();
-      await loginPage.login(testCredentials.email, testCredentials.password);
-
-      // Verify login successful
-      await homePage.verifyLoggedIn();
-    }
+    await performLogin(page, testCredentials);
 
     // Page is now authenticated and ready to use
     await use();
