@@ -29,7 +29,7 @@ export class BasePage {
    */
   async waitForElement(
     locator: Locator,
-    timeout: number = 20000,
+    timeout: number = 10000,
   ): Promise<void> {
     await locator.waitFor({ state: "visible", timeout });
   }
@@ -95,5 +95,9 @@ export class BasePage {
 
   static getDuration(startTime: number): number {
     return Date.now() - startTime;
+  }
+
+  async pause (): Promise<void> {
+    this.page.pause();
   }
 }

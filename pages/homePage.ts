@@ -6,6 +6,9 @@ export class HomePage extends BasePage {
   readonly userProfileButton;
   readonly searchInput;
   readonly pageHeading;
+  readonly title;
+  readonly grid;
+  readonly logoutButton;
 
   constructor(page: Page) {
     super(page);
@@ -15,6 +18,9 @@ export class HomePage extends BasePage {
     this.userProfileButton = page.getByRole("button", { name: "User Profile" });
     this.searchInput = page.getByPlaceholder("Search for a movie...");
     this.pageHeading = page.getByRole("heading", { level: 1 });
+    this.title = page.getByRole("heading", { name: /movies|film|playwright/i });
+    this.grid = page.getByRole("list", { name: "movies" });
+    this.logoutButton = page.getByRole('button', { name: 'Logout' });
   }
 
   /**
