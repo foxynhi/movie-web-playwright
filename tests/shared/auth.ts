@@ -11,7 +11,6 @@ export async function performLogin(page : Page, credentials: TestCredentials) : 
   const homePage = new HomePage(page);
   const loginPage = new LoginPage(page);
   
-  console.log("performLogin: goto", credentials.baseUrl);
   await homePage.goto(credentials.baseUrl);
 
   const loggedin = await homePage.userProfileButton.count();

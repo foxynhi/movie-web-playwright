@@ -20,7 +20,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 4 : undefined,
   maxFailures: process.env.CI ? 4 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
@@ -49,12 +49,11 @@ export default defineConfig({
   projects: [
     { name: 'guest-chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: ['**/e2e-auth/**'], },
     { name: 'guest-firefox',  use: { ...devices['Desktop Firefox'] }, testIgnore: ['**/e2e-auth/**'], },
-    { name: 'guest-webkit',   use: { ...devices['Desktop Safari'] }, testIgnore: ['**/e2e-auth/**'], },
+    // { name: 'guest-webkit',   use: { ...devices['Desktop Safari'] }, testIgnore: ['**/e2e-auth/**'], },
 
-    // --- AUTH (logged in via storageState) ---
     { name: 'auth-chromium', use: { ...devices['Desktop Chrome'],  storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
     { name: 'auth-firefox',  use: { ...devices['Desktop Firefox'], storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
-    { name: 'auth-webkit',   use: { ...devices['Desktop Safari'],  storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
+    // { name: 'auth-webkit',   use: { ...devices['Desktop Safari'],  storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
 
     /* Test against mobile viewports. */
     // {

@@ -1,72 +1,73 @@
-import { Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 export class HomePage extends BasePage {
   readonly loginButton;
   readonly userProfileButton;
-  readonly searchInput;
   readonly pageHeading;
   readonly title;
   readonly grid;
   readonly logoutButton;
+  readonly searchButton;
+  readonly searchInput;
+  readonly searchSubmit;
+  readonly seachNotFound;
 
   constructor(page: Page) {
     super(page);
-
-    // Locators using user-centric approach
     this.loginButton = page.getByRole("button", { name: "Log In" });
     this.userProfileButton = page.getByRole("button", { name: "User Profile" });
-    this.searchInput = page.getByPlaceholder("Search for a movie...");
     this.pageHeading = page.getByRole("heading", { level: 1 });
     this.title = page.getByRole("heading", { name: /movies|film|playwright/i });
     this.grid = page.getByRole("list", { name: "movies" });
     this.logoutButton = page.getByRole('button', { name: 'Logout' });
+    this.searchButton = page.getByRole('search');
+    this.searchInput = page.getByRole('textbox', { name: 'Search Input' });
+    this.searchSubmit = page.getByRole('button', { name: 'Search for a movie' });
+    this.seachNotFound = page.getByRole('heading', { name: 'Sorry!' });  
   }
 
-  /**
-   * Navigate to home page
-   * @param {string} baseUrl - Base URL from env
-   */
   async goto(baseUrl: string): Promise<void> {
     await this.navigateTo(baseUrl);
   }
 
-  /**
-   * Check if user is logged in
-   * @returns {Promise<boolean>}
-   */
   async isUserLoggedIn(): Promise<boolean> {
     return await this.isVisible(this.userProfileButton);
   }
 
-  /**
-   * Click login button to open login page
-   */
   async clickLogin(): Promise<void> {
     await this.click(this.loginButton);
   }
 
-  /**
-   * Verify user profile button is visible (user is logged in)
-   */
   async verifyLoggedIn(): Promise<void> {
     await this.waitForElement(this.userProfileButton);
   }
 
-  /**
-   * Search for a movie
-   * @param {string} movieName - Movie name to search
-   */
-  async searchMovie(movieName: string): Promise<void> {
-    await this.fill(this.searchInput, movieName);
-    await this.page.keyboard.press("Enter");
-  }
-
-  /**
-   * Get current category heading
-   * @returns {Promise<string>}
-   */
   async getCategoryHeading(): Promise<string | null> {
     return await this.pageHeading.textContent();
+  }
+
+  async fillSearchInput(title: string): Promise<void> {
+    await this.click(this.searchButton);
+    await this.fill(this.searchInput, title);
+    await this.click(this.searchSubmit);
+  }
+
+  private escapeRegExp(text: string): string {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  movieCards(title: string): Locator {
+    const pattern = new RegExp(`\\b${this.escapeRegExp(title)}\\b`, 'i');
+    const scope = this.grid ?? this.page;
+    return scope.getByRole('link', { name: pattern });
+  }
+
+  movieCard(title: string): Locator {
+    return this.movieCards(title).first();
+  }
+
+  async movieCardCount(title: string): Promise<number> {
+    return this.movieCards(title).count();
   }
 }

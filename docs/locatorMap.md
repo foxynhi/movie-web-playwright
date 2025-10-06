@@ -9,9 +9,11 @@
 | Login           | Login password            | page.getByRole('textbox', { name: 'Password' })   |    |
 | Login           | Login submit              | page.getByRole('button', { name: 'Login' })   |    |
 | Title           | Page title                | page.getByRole('heading', { name: /movies|film|playwright/i })                                          |
-| Search          | Search input              | page.getByRole('  ', { name: /search/i })             | page.getByPlaceholder(/search/i)                |
+| Search          | Search button             | page.getByRole('search')                |
+| Search          | Search input              | page.getByRole('textbox', { name: 'Search Input' })                |
+| Search          | Search submit icon        | page.getByRole('button', { name: 'Search for a movie' })               |
 | Grid            | Movie Container           | page.getByRole('list', { name: 'movies' })                    
-| Grid            | Movie title in card       | page.getByRole('heading', { level: 3 })               | page.locator('[data-testid="movie-title"]')     |
+| Grid            | Movie card                | page.getByRole('link', { name: 'poster of Civil War Civil War' })
 | Details         | Details container/modal   | page.getByRole('dialog')                              | page.getByTestId('movie-dialog')                |
 | Details         | Close details             | page.getByRole('button', { name: /close/i })          | page.getByTestId('close')                       |
 | Feedback states | Empty results message     | page.getByText(/no results|nothing found/i)           | page.locator('[data-testid="empty-state"]')     | 
