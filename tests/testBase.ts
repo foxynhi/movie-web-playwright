@@ -6,11 +6,13 @@ import { ReportGenerator } from "../utils/reportGenerator";
 import type { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
 import { BasePage } from "../pages/basePage";
 import { performLogin } from "./shared/auth";
+import { MovieDetailPage } from "../pages/movieDetailPage";
 export { expect } from "@playwright/test";
 
 type TestFixtures = {
   homePage: HomePage;
   loginPage: LoginPage;
+  movieDetailPage: MovieDetailPage;
   reportGenerator: ReportGeneratorFixture;
   authenticatedPage: void;
   testCredentials: {
@@ -34,6 +36,10 @@ export const test = base.extend<TestFixtures>({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
+  },
+  movieDetailPage: async ({ page }, use) => {
+    const movieDetailPage = new MovieDetailPage(page);
+    await use(movieDetailPage);
   },
 
   testCredentials: async ({}, use) => {

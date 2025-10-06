@@ -1,4 +1,4 @@
-import { test, trackStep, expect } from "./testBase";
+import { test, trackStep, expect } from "../testBase";
 
 test.describe("Search", () => {
   test("search for movies with valid search string", async ({

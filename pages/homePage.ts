@@ -65,7 +65,11 @@ export class HomePage extends BasePage {
     return scope.getByRole("link", { name: pattern });
   }
 
-  movieCard(title: string): Locator {
+  movieCard(title?: string): Locator {
+    if (!title) {
+      const scope = this.grid ?? this.page;
+      return scope.getByRole("link").first();
+    }
     return this.movieCards(title).first();
   }
 
