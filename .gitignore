@@ -16,3 +16,5 @@ playwright/.auth/
 npm-debug.log*
 
 !TestResults/testHistory.json
+
+fixtures/

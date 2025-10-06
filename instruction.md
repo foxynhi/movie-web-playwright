@@ -101,23 +101,24 @@
 **Linting & Formatting:**
 
 Run validation before committing:
+
 ```bash
 npm run validate
 ```
+
 This runs Prettier and ESLint for code quality.
 
 ---
 
-
 **Naming Conventions**
 
-| Identifier Type | Naming Rules | Examples |
-|-----------------|-------------|----------|
-| **Packages**    | Lowercase, descriptive, use hyphens/underscores if needed. Semantic versioning (MAJOR.MINOR.PATCH). | `lodash`, `axios`, `express` |
-| **Classes**     | Start with uppercase, use CamelCase. | `class Person`, `class Cars` |
-| **Interfaces**  | Start with uppercase, use CamelCase. | `interface Animal`, `interface Humans` |
-| **Methods**     | Camel case, start with lowercase. | `startEngine()`, `brake()`, `accelerate(speed)` |
-| **Variables**   | Camel case, start with lowercase, descriptive. Avoid reserved keywords. | `const firstName = 'John'`, `let age = 30`, `var isStudent = true` |
+| Identifier Type | Naming Rules                                                                                        | Examples                                                           |
+| --------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Packages**    | Lowercase, descriptive, use hyphens/underscores if needed. Semantic versioning (MAJOR.MINOR.PATCH). | `lodash`, `axios`, `express`                                       |
+| **Classes**     | Start with uppercase, use CamelCase.                                                                | `class Person`, `class Cars`                                       |
+| **Interfaces**  | Start with uppercase, use CamelCase.                                                                | `interface Animal`, `interface Humans`                             |
+| **Methods**     | Camel case, start with lowercase.                                                                   | `startEngine()`, `brake()`, `accelerate(speed)`                    |
+| **Variables**   | Camel case, start with lowercase, descriptive. Avoid reserved keywords.                             | `const firstName = 'John'`, `let age = 30`, `var isStudent = true` |
 
 ---
 
@@ -126,11 +127,13 @@ This runs Prettier and ESLint for code quality.
 Format: `type: Description`
 
 Example:
+
 ```bash
 git commit -m "refactor: Login TC updated"
 ```
 
 Types:
+
 - `feat:` Feature addition
 - `fix:` Bug fix
 - `docs:` Documentation

@@ -19,7 +19,8 @@
     "format": "prettier --write .",
     "lint-check": "eslint .",
     "format-check": "prettier --check .",
-    "validate": "npm run format && npm run lint"
+    "validate": "npm run format && npm run lint",
+    "inspect": "npx playwright codegen https://debs-obrien.github.io/playwright-movies-app/"
   },
   "keywords": [
     "playwright",

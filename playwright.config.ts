@@ -4,9 +4,9 @@ import { defineConfig, devices } from "@playwright/test";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -21,7 +21,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  maxFailures: process.env.CI ? 5 : undefined,
+  maxFailures: process.env.CI ? 4 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     [
@@ -47,20 +47,14 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
-    },
+    { name: 'guest-chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: ['**/e2e-auth/**'], },
+    { name: 'guest-firefox',  use: { ...devices['Desktop Firefox'] }, testIgnore: ['**/e2e-auth/**'], },
+    { name: 'guest-webkit',   use: { ...devices['Desktop Safari'] }, testIgnore: ['**/e2e-auth/**'], },
 
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    // --- AUTH (logged in via storageState) ---
+    { name: 'auth-chromium', use: { ...devices['Desktop Chrome'],  storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
+    { name: 'auth-firefox',  use: { ...devices['Desktop Firefox'], storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
+    { name: 'auth-webkit',   use: { ...devices['Desktop Safari'],  storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
 
     /* Test against mobile viewports. */
     // {
@@ -82,7 +76,7 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-
+  globalSetup: require.resolve('./tests/setup/globalSetup'),
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',

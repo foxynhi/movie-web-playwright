@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -39,8 +39,7 @@ jobs:
           BASE_URL: https://debs-obrien.github.io/playwright-movies-app
           TEST_EMAIL: joedoe@outlook.com
           TEST_PASSWORD: 12345
-        run: 
-          npx playwright test --workers=2
+        run: npx playwright test --workers=2
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
