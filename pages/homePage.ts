@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 export class HomePage extends BasePage {
@@ -20,11 +20,13 @@ export class HomePage extends BasePage {
     this.pageHeading = page.getByRole("heading", { level: 1 });
     this.title = page.getByRole("heading", { name: /movies|film|playwright/i });
     this.grid = page.getByRole("list", { name: "movies" });
-    this.logoutButton = page.getByRole('button', { name: 'Logout' });
-    this.searchButton = page.getByRole('search');
-    this.searchInput = page.getByRole('textbox', { name: 'Search Input' });
-    this.searchSubmit = page.getByRole('button', { name: 'Search for a movie' });
-    this.seachNotFound = page.getByRole('heading', { name: 'Sorry!' });  
+    this.logoutButton = page.getByRole("button", { name: "Logout" });
+    this.searchButton = page.getByRole("search");
+    this.searchInput = page.getByRole("textbox", { name: "Search Input" });
+    this.searchSubmit = page.getByRole("button", {
+      name: "Search for a movie",
+    });
+    this.seachNotFound = page.getByRole("heading", { name: "Sorry!" });
   }
 
   async goto(baseUrl: string): Promise<void> {
@@ -54,13 +56,13 @@ export class HomePage extends BasePage {
   }
 
   private escapeRegExp(text: string): string {
-    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
   movieCards(title: string): Locator {
-    const pattern = new RegExp(`\\b${this.escapeRegExp(title)}\\b`, 'i');
+    const pattern = new RegExp(`\\b${this.escapeRegExp(title)}\\b`, "i");
     const scope = this.grid ?? this.page;
-    return scope.getByRole('link', { name: pattern });
+    return scope.getByRole("link", { name: pattern });
   }
 
   movieCard(title: string): Locator {

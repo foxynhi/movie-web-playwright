@@ -1,8 +1,9 @@
-import { test as base, TestInfo } from "@playwright/test";
+import type { TestInfo } from "@playwright/test";
+import { test as base } from "@playwright/test";
 import { HomePage } from "../pages/homePage";
 import { LoginPage } from "../pages/loginPage";
 import { ReportGenerator } from "../utils/reportGenerator";
-import { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
+import type { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
 import { BasePage } from "../pages/basePage";
 import { performLogin } from "./shared/auth";
 export { expect } from "@playwright/test";
@@ -83,10 +84,7 @@ export const test = base.extend<TestFixtures>({
    * Auto-login fixture - automatically logs in before test
    * Use this for tests that require authenticated state
    */
-  authenticatedPage: async (
-    { page, testCredentials },
-    use,
-  ) => {
+  authenticatedPage: async ({ page, testCredentials }, use) => {
     // Navigate to home page
     await performLogin(page, testCredentials);
 

@@ -1,5 +1,5 @@
 import { BasePage } from "./basePage";
-import { Page, Locator } from "@playwright/test";
+import type { Page, Locator } from "@playwright/test";
 
 export class LoginPage extends BasePage {
   readonly loginHeading: Locator;

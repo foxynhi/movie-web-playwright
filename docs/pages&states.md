@@ -7,9 +7,11 @@
 - [ ] Dark theme
 
 ### Authenticated
+
 - [x] Home / Popular movies (default landing)
 
 ### Unauthenticated
+
 - [x] Home / Popular movies (default landing)
 
 ## States to validate (often via network mocking)

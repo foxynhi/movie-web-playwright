@@ -22,6 +22,5 @@ test.describe("Logout (Auth)", () => {
         testResult,
       );
     });
-
   });
 });

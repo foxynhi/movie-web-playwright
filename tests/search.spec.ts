@@ -11,32 +11,32 @@ test.describe("Search", () => {
 
     await test.step("Navigate to the movies app", async () => {
       await trackStep(
-      "Navigate to the movies app",
-      async () => {
+        "Navigate to the movies app",
+        async () => {
           await homePage.goto(testCredentials.baseUrl);
         },
-        testResult
-    )
+        testResult,
+      );
     });
     await test.step("Fill in search input", async () => {
       await trackStep(
-      "Fill in search input",
-      async () => {
+        "Fill in search input",
+        async () => {
           await homePage.fillSearchInput(searchText);
-          await homePage.page.waitForLoadState('networkidle');
+          await homePage.page.waitForLoadState("networkidle");
         },
-        testResult
-    )
+        testResult,
+      );
     });
     await test.step("Verify search found", async () => {
       await trackStep(
-      "Verify search found",
-      async () => {
+        "Verify search found",
+        async () => {
           const count = await homePage.movieCardCount(searchText);
           expect(count).toBeGreaterThan(0);
         },
-        testResult
-    )
+        testResult,
+      );
     });
   });
 
@@ -50,31 +50,31 @@ test.describe("Search", () => {
 
     await test.step("Navigate to the movies app", async () => {
       await trackStep(
-      "Navigate to the movies app",
-      async () => {
+        "Navigate to the movies app",
+        async () => {
           await homePage.goto(testCredentials.baseUrl);
         },
-        testResult
-    )
+        testResult,
+      );
     });
     await test.step("Fill in search input", async () => {
       await trackStep(
-      "Fill in search input",
-      async () => {
+        "Fill in search input",
+        async () => {
           await homePage.fillSearchInput(searchText);
-          await homePage.page.waitForLoadState('networkidle');
+          await homePage.page.waitForLoadState("networkidle");
         },
-        testResult
-    )
+        testResult,
+      );
     });
     await test.step("Verify search not found", async () => {
       await trackStep(
-      "Verify search not found",
-      async () => {
-          expect(homePage.seachNotFound).toBeVisible();
+        "Verify search not found",
+        async () => {
+          await expect(homePage.seachNotFound).toBeVisible();
         },
-        testResult
-    )
+        testResult,
+      );
     });
   });
 });

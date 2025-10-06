@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 
 export class BasePage {
   readonly page: Page;
@@ -97,7 +97,7 @@ export class BasePage {
     return Date.now() - startTime;
   }
 
-  async pause (): Promise<void> {
-    this.page.pause();
+  async pause(): Promise<void> {
+    await this.page.pause();
   }
 }
