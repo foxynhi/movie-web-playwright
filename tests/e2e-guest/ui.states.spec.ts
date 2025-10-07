@@ -1,14 +1,6 @@
 import { expect, test, trackStep } from "../testBase";
 
 test.describe("UI states", () => {
-  // test.beforeEach(async ({ homePage }) => {
-  //   await homePage.page.unrouteAll({ behavior: 'ignoreErrors' });
-  // });
-
-  // test.afterEach(async ({ homePage }) => {
-  //   await homePage.page.unrouteAll({ behavior: 'ignoreErrors' });
-  // });
-
   test("Mock empty response", async ({
     homePage,
     testCredentials,

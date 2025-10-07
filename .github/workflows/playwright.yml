@@ -1,7 +1,7 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
     branches: [main, dev]
 jobs:
@@ -39,11 +39,14 @@ jobs:
           BASE_URL: https://debs-obrien.github.io/playwright-movies-app
           TEST_EMAIL: joedoe@outlook.com
           TEST_PASSWORD: 12345
-        run: npx playwright test --project "*-chromium" "*-firefox"
+        run: npx playwright test --grep-invert "visual"
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: test-results
-          path: test-results/
+          path: |
+            test-results/
+            TestResults/playwright-report/
+            tests/**/visual.spec.ts-snapshots/**
           retention-days: 30

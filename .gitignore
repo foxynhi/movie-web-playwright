@@ -18,3 +18,4 @@ npm-debug.log*
 !TestResults/testHistory.json
 
 fixtures/
+tests/**/visual.spec.ts-snapshots/
