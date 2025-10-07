@@ -9,7 +9,7 @@ test.describe("Smoke @smoke", () => {
     await trackStep(
       "Verify home page renders grid/list of movies correctly",
       async () => {
-        await homePage.goto(testCredentials.baseUrl);
+        await homePage.goTo(testCredentials.baseUrl);
         await expect(homePage.title).toBeVisible();
         await expect(homePage.grid).toBeVisible();
       },

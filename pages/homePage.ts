@@ -29,7 +29,7 @@ export class HomePage extends BasePage {
     this.seachNotFound = page.getByRole("heading", { name: "Sorry!" });
   }
 
-  async goto(baseUrl: string): Promise<void> {
+  async goTo(baseUrl: string): Promise<void> {
     await this.navigateTo(baseUrl);
   }
 

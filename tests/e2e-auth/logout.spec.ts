@@ -11,7 +11,7 @@ test.describe("Logout (Auth)", () => {
       await trackStep(
         "Navigate to the movies app",
         async () => {
-          await homePage.goto(testCredentials.baseUrl);
+          await homePage.goTo(testCredentials.baseUrl);
           await homePage.waitForElement(homePage.userProfileButton);
           await homePage.userProfileButton.hover();
           await expect(homePage.logoutButton).toBeVisible();

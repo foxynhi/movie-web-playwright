@@ -13,7 +13,7 @@ test.describe("Login", () => {
       await trackStep(
         "Navigate to the movies app",
         async () => {
-          await homePage.goto(testCredentials.baseUrl);
+          await homePage.goTo(testCredentials.baseUrl);
         },
         testResult,
       );
