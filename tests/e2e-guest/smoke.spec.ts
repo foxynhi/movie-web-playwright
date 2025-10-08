@@ -16,7 +16,7 @@ test.describe("Smoke @smoke", () => {
       reportGenerator.testResult,
     );
   });
-  
+
   test("verify login form displays correctly", async ({
     homePage,
     loginPage,
