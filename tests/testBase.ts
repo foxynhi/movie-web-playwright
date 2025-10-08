@@ -1,17 +1,18 @@
-import { test as base, TestInfo } from "@playwright/test";
+import type { TestInfo } from "@playwright/test";
+import { test as base } from "@playwright/test";
 import { HomePage } from "../pages/homePage";
 import { LoginPage } from "../pages/loginPage";
 import { ReportGenerator } from "../utils/reportGenerator";
-import dotenv from "dotenv";
-import { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
+import type { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
 import { BasePage } from "../pages/basePage";
+import { performLogin } from "./shared/auth";
+import { MovieDetailPage } from "../pages/movieDetailPage";
 export { expect } from "@playwright/test";
-
-dotenv.config();
 
 type TestFixtures = {
   homePage: HomePage;
   loginPage: LoginPage;
+  movieDetailPage: MovieDetailPage;
   reportGenerator: ReportGeneratorFixture;
   authenticatedPage: void;
   testCredentials: {
@@ -25,7 +26,7 @@ export const test = base.extend<TestFixtures>({
   homePage: async ({ page }, use) => {
     const homePage = new HomePage(page);
     console.log(
-      "Hello: ",
+      "Worker - Parallel index: ",
       process.env.TEST_WORKER_INDEX,
       process.env.TEST_PARALLEL_INDEX,
     );
@@ -35,6 +36,10 @@ export const test = base.extend<TestFixtures>({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
+  },
+  movieDetailPage: async ({ page }, use) => {
+    const movieDetailPage = new MovieDetailPage(page);
+    await use(movieDetailPage);
   },
 
   testCredentials: async ({}, use) => {
@@ -85,24 +90,9 @@ export const test = base.extend<TestFixtures>({
    * Auto-login fixture - automatically logs in before test
    * Use this for tests that require authenticated state
    */
-  authenticatedPage: async (
-    { page, homePage, loginPage, testCredentials },
-    use,
-  ) => {
+  authenticatedPage: async ({ page, testCredentials }, use) => {
     // Navigate to home page
-    await homePage.goto(testCredentials.baseUrl);
-
-    // Check if already logged in
-    const isLoggedIn = await homePage.isUserLoggedIn();
-
-    if (!isLoggedIn) {
-      // Perform login
-      await homePage.clickLogin();
-      await loginPage.login(testCredentials.email, testCredentials.password);
-
-      // Verify login successful
-      await homePage.verifyLoggedIn();
-    }
+    await performLogin(page, testCredentials);
 
     // Page is now authenticated and ready to use
     await use();

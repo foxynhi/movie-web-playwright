@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 
 export class BasePage {
   readonly page: Page;
@@ -40,7 +40,7 @@ export class BasePage {
    * @param {number} timeout - Timeout in milliseconds
    * @returns {Promise<boolean>}
    */
-  async isVisible(locator: Locator, timeout: number = 2000): Promise<boolean> {
+  async isVisible(locator: Locator, timeout: number = 5000): Promise<boolean> {
     try {
       await locator.isVisible({ timeout });
       return true;
@@ -95,5 +95,9 @@ export class BasePage {
 
   static getDuration(startTime: number): number {
     return Date.now() - startTime;
+  }
+
+  async pause(): Promise<void> {
+    await this.page.pause();
   }
 }

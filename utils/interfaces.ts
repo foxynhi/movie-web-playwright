@@ -1,4 +1,4 @@
-import { ReportGenerator } from "./reportGenerator";
+import type { ReportGenerator } from "./reportGenerator";
 
 export interface StepTime {
   step: string;

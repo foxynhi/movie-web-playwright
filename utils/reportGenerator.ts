@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { TestResult } from "../types/testResult";
-import { StepTime } from "./interfaces";
+import type { TestResult } from "../types/testResult";
+import type { StepTime } from "./interfaces";
 
 export class ReportGenerator {
   readonly resultsDir: string;
