@@ -1,12 +1,12 @@
 import type { TestInfo } from "@playwright/test";
 import { test as base } from "@playwright/test";
-import { HomePage } from "../pages/homePage";
-import { LoginPage } from "../pages/loginPage";
-import { ReportGenerator } from "../utils/reportGenerator";
-import type { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
-import { BasePage } from "../pages/basePage";
-import { performLogin } from "./shared/auth";
-import { MovieDetailPage } from "../pages/movieDetailPage";
+import { HomePage } from "../../pages/homePage";
+import { LoginPage } from "../../pages/loginPage";
+import { ReportGenerator } from "../../utils/reportGenerator";
+import type { ReportGeneratorFixture, TestResult } from "../../utils/interfaces";
+import { BasePage } from "../../pages/basePage";
+import { performLogin } from "./auth";
+import { MovieDetailPage } from "../../pages/movieDetailPage";
 export { expect } from "@playwright/test";
 
 type TestFixtures = {

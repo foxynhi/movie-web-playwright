@@ -1,5 +1,5 @@
 import { chromium } from "@playwright/test";
-import { performLogin } from "../shared/auth";
+import { performLogin } from "../common/auth";
 import type { TestCredentials } from "../../utils/interfaces";
 import fs from "fs";
 

@@ -1,4 +1,4 @@
-import { expect, test, trackStep } from "../testBase";
+import { expect, test, trackStep } from "../common/testBase";
 
 test.describe("Visual", () => {
   test.beforeEach(async ({ homePage, testCredentials, reportGenerator }) => {
