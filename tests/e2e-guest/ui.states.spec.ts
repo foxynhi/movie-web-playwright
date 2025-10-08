@@ -1,4 +1,4 @@
-import { expect, test, trackStep } from "../testBase";
+import { expect, test, trackStep } from "../common/testBase";
 
 test.describe("UI states", () => {
   test("Mock empty response", async ({

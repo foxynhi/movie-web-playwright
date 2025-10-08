@@ -12,6 +12,8 @@ export class HomePage extends BasePage {
   readonly searchInput;
   readonly searchSubmit;
   readonly seachNotFound;
+  readonly createListMenu;
+  readonly myListsMenu;
 
   constructor(page: Page) {
     super(page);
@@ -27,10 +29,33 @@ export class HomePage extends BasePage {
       name: "Search for a movie",
     });
     this.seachNotFound = page.getByRole("heading", { name: "Sorry!" });
+    this.createListMenu = page.getByRole("link", { name: "Create New List" });
+    this.myListsMenu = page.getByRole("link", { name: "My Lists" });
   }
 
   async goTo(baseUrl: string): Promise<void> {
-    await this.navigateTo(baseUrl);
+    await this.page.goto(baseUrl, { waitUntil: "domcontentloaded" });
+  }
+
+  async goToCreateListPage(): Promise<void> {
+    await this.waitForElement(this.userProfileButton);
+    await this.userProfileButton.hover();
+    await this.waitForElement(this.createListMenu);
+    await this.click(this.createListMenu);
+  }
+
+  async goToMyListPage(): Promise<void> {
+    await this.waitForElement(this.userProfileButton);
+    await this.userProfileButton.hover();
+    await this.waitForElement(this.myListsMenu);
+    await this.click(this.myListsMenu);
+  }
+
+  async clickLogOut(): Promise<void> {
+    await this.waitForElement(this.userProfileButton);
+    await this.userProfileButton.hover();
+    await this.waitForElement(this.logoutButton);
+    await this.click(this.logoutButton);
   }
 
   async isUserLoggedIn(): Promise<boolean> {
@@ -74,6 +99,6 @@ export class HomePage extends BasePage {
   }
 
   async movieCardCount(title: string): Promise<number> {
-    return this.movieCards(title).count();
+    return await this.movieCards(title).count();
   }
 }

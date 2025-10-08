@@ -1,4 +1,4 @@
-import { expect, test, trackStep } from "../testBase";
+import { expect, test, trackStep } from "../common/testBase";
 
 test.describe("Login", () => {
   test("login with valid credentials", async ({

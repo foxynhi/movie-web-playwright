@@ -1,18 +1,23 @@
 import type { TestInfo } from "@playwright/test";
 import { test as base } from "@playwright/test";
-import { HomePage } from "../pages/homePage";
-import { LoginPage } from "../pages/loginPage";
-import { ReportGenerator } from "../utils/reportGenerator";
-import type { ReportGeneratorFixture, TestResult } from "../utils/interfaces";
-import { BasePage } from "../pages/basePage";
-import { performLogin } from "./shared/auth";
-import { MovieDetailPage } from "../pages/movieDetailPage";
+import { HomePage } from "../../pages/homePage";
+import { LoginPage } from "../../pages/loginPage";
+import { ReportGenerator } from "../../utils/reportGenerator";
+import type {
+  ReportGeneratorFixture,
+  TestResult,
+} from "../../utils/interfaces";
+import { BasePage } from "../../pages/basePage";
+import { performLogin } from "./auth";
+import { MovieDetailPage } from "../../pages/movieDetailPage";
+import { MovieListPage } from "../../pages/movieListPage";
 export { expect } from "@playwright/test";
 
 type TestFixtures = {
   homePage: HomePage;
   loginPage: LoginPage;
   movieDetailPage: MovieDetailPage;
+  movieListPage: MovieListPage;
   reportGenerator: ReportGeneratorFixture;
   authenticatedPage: void;
   testCredentials: {
@@ -37,9 +42,15 @@ export const test = base.extend<TestFixtures>({
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
+
   movieDetailPage: async ({ page }, use) => {
     const movieDetailPage = new MovieDetailPage(page);
     await use(movieDetailPage);
+  },
+
+  movieListPage: async ({ page }, use) => {
+    const movieListPage = new MovieListPage(page);
+    await use(movieListPage);
   },
 
   testCredentials: async ({}, use) => {

@@ -11,7 +11,7 @@ export class BasePage {
    * Navigate to a URL
    * @param {string} url - The URL to navigate to
    */
-  async navigateTo(url: string): Promise<void> {
+  async goTo(url: string): Promise<void> {
     await this.page.goto(url, { waitUntil: "domcontentloaded" });
   }
 
@@ -54,6 +54,7 @@ export class BasePage {
    * @param {import('@playwright/test').Locator} locator - Playwright locator
    */
   async click(locator: Locator): Promise<void> {
+    await this.waitForElement(locator);
     await locator.click();
   }
 

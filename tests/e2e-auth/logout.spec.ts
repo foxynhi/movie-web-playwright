@@ -1,4 +1,4 @@
-import { expect, test, trackStep } from "../testBase";
+import { expect, test, trackStep } from "../common/testBase";
 
 test.describe("Logout (Auth)", () => {
   test("ends the session and returns to guest UI", async ({
@@ -12,10 +12,8 @@ test.describe("Logout (Auth)", () => {
         "Navigate to the movies app",
         async () => {
           await homePage.goTo(testCredentials.baseUrl);
-          await homePage.waitForElement(homePage.userProfileButton);
-          await homePage.userProfileButton.hover();
-          await expect(homePage.logoutButton).toBeVisible();
-          await homePage.logoutButton.click();
+
+          await homePage.clickLogOut();
 
           await expect(homePage.loginButton).toBeVisible();
         },
