@@ -7,6 +7,7 @@ export class MovieDetailPage extends HomePage {
   readonly websiteLink;
   readonly IMDBBtn;
   readonly IMDBLink;
+  readonly backBtn;
 
   constructor(page: Page) {
     super(page);
@@ -15,6 +16,7 @@ export class MovieDetailPage extends HomePage {
     this.websiteLink = this.websiteBtn.getAttribute("href");
     this.IMDBBtn = page.getByRole("button", { name: "IMDB" });
     this.IMDBLink = this.IMDBBtn.getAttribute("href");
+    this.backBtn = page.getByRole("button", { name: "Back" });
   }
   async clickFirstMovie(): Promise<void> {
     await this.click(this.movieCard());

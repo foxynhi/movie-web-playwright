@@ -32,7 +32,9 @@ export class HomePage extends BasePage {
     this.seachNotFound = page.getByRole("heading", { name: "Sorry!" });
     this.createListMenu = page.getByRole("link", { name: "Create New List" });
     this.myListsMenu = page.getByRole("link", { name: "My Lists" });
-    this.searchResultsTitle = page.getByRole("heading", { name: "search results" });
+    this.searchResultsTitle = page.getByRole("heading", {
+      name: "search results",
+    });
   }
 
   async goTo(baseUrl: string): Promise<void> {

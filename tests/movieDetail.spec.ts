@@ -24,7 +24,9 @@ test.describe("Movie detail @agnostic", () => {
         "Go to detail page of the first movie found",
         async () => {
           await movieDetailPage.clickFirstMovie();
-          await movieDetailPage.page.waitForLoadState("networkidle");
+
+          await expect(movieDetailPage.page).toHaveURL(/\/movie\?/i);
+          await expect(movieDetailPage.backBtn).toBeVisible();
         },
         testResult,
       );

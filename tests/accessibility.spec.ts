@@ -1,7 +1,7 @@
 import { expect, test, trackStep } from "./common/testBase";
 import AxeBuilder from "@axe-core/playwright";
 
-test.describe("Accessibility Tests @a11y @agnostic", () => {
+test.describe("Accessibility Tests @a11y @guest", () => {
   // test("home page meets WCAG 2.1 Level AA standards", async ({
   //   page,
   //   homePage,
@@ -51,7 +51,7 @@ test.describe("Accessibility Tests @a11y @agnostic", () => {
   //   });
   // });
 
-  test("login page is accessible @guest", async ({
+  test("login page is accessible", async ({
     page,
     homePage,
     loginPage,

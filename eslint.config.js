@@ -64,7 +64,7 @@ export default tseslint.config(
       "playwright/no-conditional-in-test": "warn",
       "playwright/no-element-handle": "error",
       "playwright/no-force-option": "warn",
-      "playwright/no-networkidle": "off", // enable if you want to discourage it
+      "playwright/no-networkidle": "warn",
       "playwright/no-page-pause": "error",
       "playwright/no-skipped-test": "warn",
       "playwright/no-wait-for-timeout": "warn",

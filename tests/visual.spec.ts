@@ -8,7 +8,6 @@ test.describe("Visual @visual @agnostic", () => {
         async () => {
           try {
             await homePage.goTo(testCredentials.baseUrl);
-            await homePage.page.waitForLoadState("networkidle");
             await homePage.page.addStyleTag({
               content: `*,*::before,*::after{transition:none!important;animation:none!important;caret-color:transparent!important}`,
             });

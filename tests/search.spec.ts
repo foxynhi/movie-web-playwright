@@ -23,7 +23,6 @@ test.describe("Search @agnostic", () => {
         "Fill in search input",
         async () => {
           await homePage.fillSearchInput(searchText);
-          await homePage.page.waitForLoadState("networkidle");
           await expect(homePage.searchResultsTitle).toBeVisible();
         },
         testResult,
@@ -34,7 +33,7 @@ test.describe("Search @agnostic", () => {
         "Verify search found",
         async () => {
           const firstMovie = homePage.movieCard(searchText);
-          expect(firstMovie).toBeVisible();
+          await expect(firstMovie).toBeVisible();
         },
         testResult,
       );
@@ -63,7 +62,8 @@ test.describe("Search @agnostic", () => {
         "Fill in search input",
         async () => {
           await homePage.fillSearchInput(searchText);
-          await homePage.page.waitForLoadState("networkidle");
+
+          await expect(homePage.page).toHaveURL(/\/search\?/i);
         },
         testResult,
       );
