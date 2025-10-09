@@ -18,4 +18,7 @@ npm-debug.log*
 !TestResults/testHistory.json
 
 fixtures/
-tests/**/visual.spec.ts-snapshots/
+!fixtures/interface.ts
+
+tests/visual.spec.ts-snapshots/
+!tests/visual.spec.ts-snapshots/*-linux.png

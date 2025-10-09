@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("UI states", () => {
+test.describe("UI states @agnostic", () => {
   test("Mock empty response", async ({
     homePage,
     testCredentials,

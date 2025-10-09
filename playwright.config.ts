@@ -54,14 +54,13 @@ export default defineConfig({
     {
       name: "guest-chromium",
       use: { ...devices["Desktop Chrome"] },
-      testIgnore: ["**/e2e-auth/**"],
+      grepInvert: /@auth/i,
     },
     {
       name: "guest-firefox",
       use: { ...devices["Desktop Firefox"] },
-      testIgnore: ["**/e2e-auth/**"],
+      grepInvert: /@auth/i,
     },
-    // { name: 'guest-webkit',   use: { ...devices['Desktop Safari'] }, testIgnore: ['**/e2e-auth/**'], },
 
     {
       name: "auth-chromium",
@@ -69,7 +68,7 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         storageState: "fixtures/storageState.auth.json",
       },
-      testIgnore: ["**/e2e-guest/**"],
+      grepInvert: /@guest/i,
     },
     {
       name: "auth-firefox",
@@ -77,31 +76,10 @@ export default defineConfig({
         ...devices["Desktop Firefox"],
         storageState: "fixtures/storageState.auth.json",
       },
-      testIgnore: ["**/e2e-guest/**"],
+      grepInvert: /@guest/i,
     },
-    // { name: 'auth-webkit',   use: { ...devices['Desktop Safari'],  storageState: 'fixtures/storageState.auth.json' }, testIgnore: ['**/e2e-guest/**'] },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 9'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
-  globalSetup: require.resolve("./tests/setup/globalSetup"),
+  globalSetup: require.resolve("./utils/globalSetup"),
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',

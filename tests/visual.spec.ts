@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("Visual", () => {
+test.describe("Visual @visual @agnostic", () => {
   test.beforeEach(async ({ homePage, testCredentials, reportGenerator }) => {
     await test.step("Initial load", async () => {
       await trackStep(
@@ -8,7 +8,6 @@ test.describe("Visual", () => {
         async () => {
           try {
             await homePage.goTo(testCredentials.baseUrl);
-            await homePage.page.waitForLoadState("networkidle");
             await homePage.page.addStyleTag({
               content: `*,*::before,*::after{transition:none!important;animation:none!important;caret-color:transparent!important}`,
             });

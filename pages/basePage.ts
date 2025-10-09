@@ -97,8 +97,4 @@ export class BasePage {
   static getDuration(startTime: number): number {
     return Date.now() - startTime;
   }
-
-  async pause(): Promise<void> {
-    await this.page.pause();
-  }
 }

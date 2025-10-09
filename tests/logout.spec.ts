@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("Logout (Auth)", () => {
+test.describe("Logout @auth", () => {
   test("ends the session and returns to guest UI", async ({
     homePage,
     testCredentials,

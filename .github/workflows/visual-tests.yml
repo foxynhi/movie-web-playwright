@@ -56,14 +56,14 @@ jobs:
         if: steps.check_snapshots.outputs.snapshots_exist == 'false'
         run: |
           echo "Generating baseline snapshots..."
-          npx playwright test visual.spec.ts --update-snapshots
+          npx playwright test visual.spec.ts --update-snapshots --workers=4
 
       - name: Commit baseline snapshots
         if: steps.check_snapshots.outputs.snapshots_exist == 'false'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add -f tests/**/*-snapshots/
+          git add -f tests/*-snapshots/
           git commit -m "chore: add baseline visual snapshots [skip ci]" || echo "No changes to commit"
 
       - name: Push baseline snapshots
@@ -72,7 +72,7 @@ jobs:
 
       - name: Run visual regression tests
         if: steps.check_snapshots.outputs.snapshots_exist == 'true'
-        run: npx playwright test visual.spec.ts
+        run: npx playwright test visual.spec.ts --workers=4
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -81,5 +81,5 @@ jobs:
           path: |
             test-results/
             TestResults/playwright-report/
-            tests/**/visual.spec.ts-snapshots/**
+            tests/visual.spec.ts-snapshots/**
           retention-days: 30

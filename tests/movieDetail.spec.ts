@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("Movie detail", () => {
+test.describe("Movie detail @agnostic", () => {
   test("open first movie details and go to movie's website", async ({
     homePage,
     movieDetailPage,
@@ -24,7 +24,9 @@ test.describe("Movie detail", () => {
         "Go to detail page of the first movie found",
         async () => {
           await movieDetailPage.clickFirstMovie();
-          await movieDetailPage.page.waitForLoadState("networkidle");
+
+          await expect(movieDetailPage.page).toHaveURL(/\/movie\?/i);
+          await expect(movieDetailPage.backBtn).toBeVisible();
         },
         testResult,
       );

@@ -1,7 +1,7 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
 test.describe("Smoke @smoke", () => {
-  test("home page renders grid/list of movies", async ({
+  test("home page renders grid/list of movies @agnostic", async ({
     homePage,
     reportGenerator,
     testCredentials,
@@ -17,7 +17,7 @@ test.describe("Smoke @smoke", () => {
     );
   });
 
-  test("verify login form displays correctly", async ({
+  test("verify login form displays correctly @guest", async ({
     homePage,
     loginPage,
     testCredentials,

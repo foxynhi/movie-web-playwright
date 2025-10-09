@@ -1,6 +1,6 @@
 import { chromium } from "@playwright/test";
-import { performLogin } from "../common/auth";
-import type { TestCredentials } from "../../utils/interfaces";
+import { performLogin } from "../tests/common/auth";
+import type { TestCredentials } from "../fixtures/interfaces";
 import fs from "fs";
 
 export default async function gobalSetup() {
@@ -35,7 +35,7 @@ export default async function gobalSetup() {
     const html = await page.content().catch(() => "");
     fs.writeFileSync("fixtures/setup-dom.html", html);
 
-    const state = await context.storageState().catch(() => null);
+    const state = await context.storageState().catch((): null => null);
     fs.writeFileSync(
       "fixtures/setup-storage.json",
       JSON.stringify(state, null, 2),

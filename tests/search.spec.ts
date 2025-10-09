@@ -1,6 +1,6 @@
-import { test, trackStep, expect } from "../common/testBase";
+import { test, trackStep, expect } from "./common/testBase";
 
-test.describe("Search", () => {
+test.describe("Search @agnostic", () => {
   test("search for movies with valid search string", async ({
     homePage,
     testCredentials,
@@ -23,7 +23,7 @@ test.describe("Search", () => {
         "Fill in search input",
         async () => {
           await homePage.fillSearchInput(searchText);
-          await homePage.page.waitForLoadState("networkidle");
+          await expect(homePage.searchResultsTitle).toBeVisible();
         },
         testResult,
       );
@@ -32,8 +32,8 @@ test.describe("Search", () => {
       await trackStep(
         "Verify search found",
         async () => {
-          const count = await homePage.movieCardCount(searchText);
-          expect(count).toBeGreaterThan(0);
+          const firstMovie = homePage.movieCard(searchText);
+          await expect(firstMovie).toBeVisible();
         },
         testResult,
       );
@@ -62,7 +62,8 @@ test.describe("Search", () => {
         "Fill in search input",
         async () => {
           await homePage.fillSearchInput(searchText);
-          await homePage.page.waitForLoadState("networkidle");
+
+          await expect(homePage.page).toHaveURL(/\/search\?/i);
         },
         testResult,
       );
