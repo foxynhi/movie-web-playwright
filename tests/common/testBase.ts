@@ -6,7 +6,7 @@ import { ReportGenerator } from "../../utils/reportGenerator";
 import type {
   ReportGeneratorFixture,
   TestResult,
-} from "../../utils/interfaces";
+} from "../../fixtures/interfaces";
 import { BasePage } from "../../pages/basePage";
 import { performLogin } from "./auth";
 import { MovieDetailPage } from "../../pages/movieDetailPage";

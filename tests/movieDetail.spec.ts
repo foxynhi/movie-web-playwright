@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("Movie detail", () => {
+test.describe("Movie detail @agnostic", () => {
   test("open first movie details and go to movie's website", async ({
     homePage,
     movieDetailPage,

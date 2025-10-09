@@ -14,13 +14,14 @@ export class HomePage extends BasePage {
   readonly seachNotFound;
   readonly createListMenu;
   readonly myListsMenu;
+  readonly searchResultsTitle;
 
   constructor(page: Page) {
     super(page);
     this.loginButton = page.getByRole("button", { name: "Log In" });
     this.userProfileButton = page.getByRole("button", { name: "User Profile" });
     this.pageHeading = page.getByRole("heading", { level: 1 });
-    this.title = page.getByRole("heading", { name: /movies|film|playwright/i });
+    this.title = page.getByRole("heading", { name: /movies/i }).first();
     this.grid = page.getByRole("list", { name: "movies" });
     this.logoutButton = page.getByRole("button", { name: "Logout" });
     this.searchButton = page.getByRole("search");
@@ -31,6 +32,7 @@ export class HomePage extends BasePage {
     this.seachNotFound = page.getByRole("heading", { name: "Sorry!" });
     this.createListMenu = page.getByRole("link", { name: "Create New List" });
     this.myListsMenu = page.getByRole("link", { name: "My Lists" });
+    this.searchResultsTitle = page.getByRole("heading", { name: "search results" });
   }
 
   async goTo(baseUrl: string): Promise<void> {
