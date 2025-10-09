@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("Movie List", () => {
+test.describe("Movie List @auth", () => {
   const movieListName: string = "My Favorite Movies";
   const movieListDescription: string = "A list of my all-time favorite movies";
   const movieName: string = "Gunner";

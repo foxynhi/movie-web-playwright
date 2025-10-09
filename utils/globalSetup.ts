@@ -1,6 +1,6 @@
 import { chromium } from "@playwright/test";
-import { performLogin } from "../common/auth";
-import type { TestCredentials } from "../../utils/interfaces";
+import { performLogin } from "../tests/common/auth";
+import type { TestCredentials } from "../fixtures/interfaces";
 import fs from "fs";
 
 export default async function gobalSetup() {

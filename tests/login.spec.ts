@@ -1,6 +1,6 @@
-import { expect, test, trackStep } from "../common/testBase";
+import { expect, test, trackStep } from "./common/testBase";
 
-test.describe("Login", () => {
+test.describe("Login @guest", () => {
   test("login with valid credentials", async ({
     homePage,
     loginPage,

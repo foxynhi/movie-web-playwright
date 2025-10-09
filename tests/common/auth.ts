@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test";
 import { HomePage } from "../../pages/homePage";
 import { LoginPage } from "../../pages/loginPage";
-import type { TestCredentials } from "../../utils/interfaces";
+import type { TestCredentials } from "../../fixtures/interfaces";
 
 export async function performLogin(
   page: Page,

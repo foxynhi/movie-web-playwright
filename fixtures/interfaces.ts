@@ -1,4 +1,4 @@
-import type { ReportGenerator } from "./reportGenerator";
+import type { ReportGenerator } from "../utils/reportGenerator";
 
 export interface StepTime {
   step: string;
@@ -13,6 +13,7 @@ export type TestStatus =
   | "timedOut"
   | "interrupted"
   | undefined;
+
 export interface TestResult {
   testName: string;
   status: TestStatus;
