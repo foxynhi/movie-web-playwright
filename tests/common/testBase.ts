@@ -110,6 +110,13 @@ export const test = base.extend<TestFixtures>({
   },
 });
 
+test.afterEach(async ({ page }, testInfo) => {
+  if (testInfo.status !== testInfo.expectedStatus) {
+    const basePage = new BasePage(page);
+    await basePage.takeScreenshot(`${testInfo.title}-failed`);
+  }
+});
+
 export async function trackStep(
   stepName: string,
   stepFunction: () => Promise<void>,

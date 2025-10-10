@@ -61,18 +61,18 @@ export default defineConfig({
       grepInvert: /@auth/i,
     },
     {
-      name: 'guest-mobile-chromium',
-      use: { ...devices['Pixel 5'] },
+      name: "guest-mobile-chromium",
+      use: { ...devices["Pixel 5"] },
       grepInvert: /@auth/i,
     },
     {
-      name: 'guest-google-chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      name: "guest-google-chrome",
+      use: { ...devices["Desktop Chrome"], channel: "chrome" },
       grepInvert: /@auth/i,
     },
     {
-      name: 'guest-microsoft-edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+      name: "guest-microsoft-edge",
+      use: { ...devices["Desktop Edge"], channel: "msedge" },
       grepInvert: /@auth/i,
     },
 
@@ -94,27 +94,27 @@ export default defineConfig({
     },
     {
       name: "auth-mobile-chromium",
-      use: { 
+      use: {
         ...devices["Pixel 5"],
-        storageState: "fixtures/storageState.auth.json", 
+        storageState: "fixtures/storageState.auth.json",
       },
       grepInvert: /@guest/i,
     },
     {
       name: "auth-google-chrome",
-      use: { 
+      use: {
         ...devices["Desktop Chrome"],
-        channel: 'chrome',
-        storageState: "fixtures/storageState.auth.json", 
+        channel: "chrome",
+        storageState: "fixtures/storageState.auth.json",
       },
       grepInvert: /@guest/i,
     },
     {
       name: "auth-microsoft-edge",
-      use: { 
+      use: {
         ...devices["Desktop Edge"],
-        channel: 'msedge',
-        storageState: "fixtures/storageState.auth.json", 
+        channel: "msedge",
+        storageState: "fixtures/storageState.auth.json",
       },
       grepInvert: /@guest/i,
     },
