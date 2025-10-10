@@ -48,5 +48,4 @@ jobs:
           path: |
             test-results/
             TestResults/playwright-report/
-            tests/**/visual.spec.ts-snapshots/**
           retention-days: 30
