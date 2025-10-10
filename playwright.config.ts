@@ -49,7 +49,6 @@ export default defineConfig({
     locale: "en-US",
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
       name: "guest-chromium",
