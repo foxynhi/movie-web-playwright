@@ -61,6 +61,31 @@ export default defineConfig({
       use: { ...devices["Desktop Firefox"] },
       grepInvert: /@auth/i,
     },
+    {
+      name: "guest-webkit",
+      use: { ...devices["Desktop Safari"] },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: 'guest-mobile-chromium',
+      use: { ...devices['Pixel 5'] },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: 'guest-mobile-safari',
+      use: { ...devices['iPhone 12'] },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: 'guest-google-chrome',
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: 'guest-microsoft-edge',
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+      grepInvert: /@auth/i,
+    },
 
     {
       name: "auth-chromium",
@@ -78,12 +103,48 @@ export default defineConfig({
       },
       grepInvert: /@guest/i,
     },
+    {
+      name: "auth-webkit",
+      use: { 
+        ...devices["Desktop Safari"],
+        storageState: "fixtures/storageState.auth.json", 
+      },
+      grepInvert: /@guest/i,
+    },
+    {
+      name: "auth-mobile-chromium",
+      use: { 
+        ...devices["Pixel 5"],
+        storageState: "fixtures/storageState.auth.json", 
+      },
+      grepInvert: /@guest/i,
+    },
+    {
+      name: "auth-mobile-safari",
+      use: { 
+        ...devices["iPhone 12"],
+        storageState: "fixtures/storageState.auth.json", 
+      },
+      grepInvert: /@guest/i,
+    },
+    {
+      name: "auth-google-chrome",
+      use: { 
+        ...devices["Desktop Chrome"],
+        channel: 'chrome',
+        storageState: "fixtures/storageState.auth.json", 
+      },
+      grepInvert: /@guest/i,
+    },
+    {
+      name: "auth-microsoft-edge",
+      use: { 
+        ...devices["Desktop Edge"],
+        channel: 'msedge',
+        storageState: "fixtures/storageState.auth.json", 
+      },
+      grepInvert: /@guest/i,
+    },
   ],
   globalSetup: require.resolve("./utils/globalSetup"),
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
