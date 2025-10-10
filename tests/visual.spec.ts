@@ -82,7 +82,7 @@ test.describe("Visual @visual @agnostic", () => {
             timeout: 10000,
           });
 
-          const loadingIndicator = movieDetailPage.page.getByTestId("loading");
+          const loadingIndicator = movieDetailPage.page.locator("css=.loading");
           if (await loadingIndicator.isVisible().catch(() => false)) {
             await expect(loadingIndicator).toBeHidden({ timeout: 10000 });
           }
@@ -102,6 +102,8 @@ test.describe("Visual @visual @agnostic", () => {
                 ),
             );
           });
+
+          await movieDetailPage.page.waitForTimeout(500);
 
           await expect(movieDetailPage.page).toHaveScreenshot(
             "movieDetail.png",
