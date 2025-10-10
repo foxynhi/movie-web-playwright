@@ -31,6 +31,24 @@ test.describe("Visual @visual @agnostic", () => {
             throw new Error("Page was closed before screenshot");
           }
 
+          await expect(homePage.grid).toBeVisible({ timeout: 10000 });
+
+          await homePage.page.evaluate(() => {
+            return Promise.all(
+              Array.from(document.images)
+                .filter((img) => !img.complete)
+                .map(
+                  (img) =>
+                    new Promise((resolve) => {
+                      img.onload = img.onerror = resolve;
+                      setTimeout(resolve, 5000);
+                    }),
+                ),
+            );
+          });
+
+          await homePage.page.waitForTimeout(500);
+
           await expect(homePage.page).toHaveScreenshot("home.png", {
             fullPage: true,
             animations: "disabled",
@@ -57,11 +75,17 @@ test.describe("Visual @visual @agnostic", () => {
             throw new Error("Page was closed before screenshot");
           }
 
-          await homePage.movieCard().click();
+          await expect(homePage.grid).toBeVisible();
 
-          await expect(movieDetailPage.page.getByTestId("loading")).toBeHidden({
+          await homePage.movieCard().click();
+          await expect(movieDetailPage.page).toHaveURL(/\/movie\?/i, {
             timeout: 10000,
           });
+
+          const loadingIndicator = movieDetailPage.page.getByTestId("loading");
+          if (await loadingIndicator.isVisible().catch(() => false)) {
+            await expect(loadingIndicator).toBeHidden({ timeout: 10000 });
+          }
 
           await expect(movieDetailPage.movieTitle).toBeVisible();
           await expect(movieDetailPage.websiteBtn).toBeVisible();
