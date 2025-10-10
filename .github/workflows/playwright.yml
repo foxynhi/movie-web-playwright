@@ -49,4 +49,3 @@ jobs:
             test-results/
             TestResults/playwright-report/
           retention-days: 30
-          
