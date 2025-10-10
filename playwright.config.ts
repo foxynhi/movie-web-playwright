@@ -62,11 +62,6 @@ export default defineConfig({
       grepInvert: /@auth/i,
     },
     {
-      name: "guest-webkit",
-      use: { ...devices["Desktop Safari"] },
-      grepInvert: /@auth/i,
-    },
-    {
       name: 'guest-mobile-chromium',
       use: { ...devices['Pixel 5'] },
       grepInvert: /@auth/i,
@@ -100,14 +95,6 @@ export default defineConfig({
       use: {
         ...devices["Desktop Firefox"],
         storageState: "fixtures/storageState.auth.json",
-      },
-      grepInvert: /@guest/i,
-    },
-    {
-      name: "auth-webkit",
-      use: { 
-        ...devices["Desktop Safari"],
-        storageState: "fixtures/storageState.auth.json", 
       },
       grepInvert: /@guest/i,
     },
