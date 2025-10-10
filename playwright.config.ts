@@ -67,11 +67,6 @@ export default defineConfig({
       grepInvert: /@auth/i,
     },
     {
-      name: 'guest-mobile-safari',
-      use: { ...devices['iPhone 12'] },
-      grepInvert: /@auth/i,
-    },
-    {
       name: 'guest-google-chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
       grepInvert: /@auth/i,
@@ -102,14 +97,6 @@ export default defineConfig({
       name: "auth-mobile-chromium",
       use: { 
         ...devices["Pixel 5"],
-        storageState: "fixtures/storageState.auth.json", 
-      },
-      grepInvert: /@guest/i,
-    },
-    {
-      name: "auth-mobile-safari",
-      use: { 
-        ...devices["iPhone 12"],
         storageState: "fixtures/storageState.auth.json", 
       },
       grepInvert: /@guest/i,
