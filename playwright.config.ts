@@ -49,7 +49,6 @@ export default defineConfig({
     locale: "en-US",
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
       name: "guest-chromium",
@@ -59,6 +58,21 @@ export default defineConfig({
     {
       name: "guest-firefox",
       use: { ...devices["Desktop Firefox"] },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: "guest-mobile-chromium",
+      use: { ...devices["Pixel 5"] },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: "guest-google-chrome",
+      use: { ...devices["Desktop Chrome"], channel: "chrome" },
+      grepInvert: /@auth/i,
+    },
+    {
+      name: "guest-microsoft-edge",
+      use: { ...devices["Desktop Edge"], channel: "msedge" },
       grepInvert: /@auth/i,
     },
 
@@ -78,12 +92,32 @@ export default defineConfig({
       },
       grepInvert: /@guest/i,
     },
+    {
+      name: "auth-mobile-chromium",
+      use: {
+        ...devices["Pixel 5"],
+        storageState: "fixtures/storageState.auth.json",
+      },
+      grepInvert: /@guest/i,
+    },
+    {
+      name: "auth-google-chrome",
+      use: {
+        ...devices["Desktop Chrome"],
+        channel: "chrome",
+        storageState: "fixtures/storageState.auth.json",
+      },
+      grepInvert: /@guest/i,
+    },
+    {
+      name: "auth-microsoft-edge",
+      use: {
+        ...devices["Desktop Edge"],
+        channel: "msedge",
+        storageState: "fixtures/storageState.auth.json",
+      },
+      grepInvert: /@guest/i,
+    },
   ],
   globalSetup: require.resolve("./utils/globalSetup"),
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });

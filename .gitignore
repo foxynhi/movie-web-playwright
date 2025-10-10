@@ -1,4 +1,3 @@
-# Playwright
 node_modules/
 
 testResults/
@@ -17,8 +16,8 @@ npm-debug.log*
 
 !TestResults/testHistory.json
 
-fixtures/
-!fixtures/interface.ts
+fixtures/*
+!fixtures/interfaces.ts
 
 tests/visual.spec.ts-snapshots/
 !tests/visual.spec.ts-snapshots/*-linux.png
