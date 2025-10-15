@@ -6,6 +6,8 @@
 
 A comprehensive, production-ready Playwright test automation framework featuring Page Object Model architecture, custom reporting, accessibility testing, and visual regression testing.
 
+![Homepage snapshot](https://github.com/foxynhi/movie-web-playwright/blob/main/tests/visual.spec.ts-snapshots/home-auth-chromium-linux.png)
+
 ## 🌟 Key Features
 
 - ✅ **Page Object Model (POM)** - Scalable and maintainable test architecture
