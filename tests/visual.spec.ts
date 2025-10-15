@@ -47,7 +47,7 @@ test.describe("Visual @visual @agnostic", () => {
             );
           });
 
-          await homePage.page.waitForTimeout(500);
+          await homePage.page.waitForTimeout(1000);
 
           await expect(homePage.page).toHaveScreenshot("home.png", {
             fullPage: true,
@@ -103,7 +103,7 @@ test.describe("Visual @visual @agnostic", () => {
             );
           });
 
-          await movieDetailPage.page.waitForTimeout(500);
+          await movieDetailPage.page.waitForTimeout(2000);
 
           await expect(movieDetailPage.page).toHaveScreenshot(
             "movieDetail.png",
